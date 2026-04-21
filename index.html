@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bread&Co - Caffe & Pekara</title>
+  <meta name="description" content="Bread&Co - Caffe & Pekara u Sarajevu. Burgeri, wrapovi, deserti i vise.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      color: #1a1a1a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 0 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Profile */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 48px;
+      margin-bottom: 24px;
+    }
+
+    .avatar-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 2px solid #B8956A;
+      margin-bottom: 8px;
+    }
+
+    .avatar-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+      padding: 14px;
+    }
+
+    /* Ornament */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0 24px;
+    }
+
+    .ornament-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(184, 149, 106, 0.3);
+    }
+
+    .ornament-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(184, 149, 106, 0.4);
+    }
+
+    /* Social icons */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(184, 149, 106, 0.1);
+      color: #B8956A;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .socials a:active {
+      transform: scale(0.95);
+      background: rgba(184, 149, 106, 0.2);
+    }
+
+    .socials svg { width: 20px; height: 20px; }
+
+    /* Link buttons */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 24px;
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      background: #FDFBF8;
+      color: #1a1a1a;
+      border: 1.5px solid #E5E0DA;
+      box-shadow: none;
+    }
+
+    .link-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Menu Section */
+    .menu-section {
+      display: none;
+      margin-bottom: 32px;
+    }
+
+    .menu-section.active { display: block; }
+
+    .menu-nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .menu-nav button {
+      padding: 8px 18px;
+      border-radius: 10px;
+      border: none;
+      background: #f5f3f0;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #999;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .menu-nav button.active {
+      background: #B8956A;
+      color: #fff;
+    }
+
+    .menu-section img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      cursor: zoom-in;
+    }
+
+    .close-menu {
+      display: block;
+      margin: 16px auto 0;
+      padding: 10px 28px;
+      border-radius: 10px;
+      border: none;
+      background: #f5f3f0;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #999;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px 24px;
+      font-size: 11px;
+      color: rgba(0,0,0,0.2);
+      margin-top: auto;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 95vh;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <section class="profile">
+      <div class="avatar-ring">
+        <img src="images/logo.png" alt="Bread&Co">
+      </div>
+    </section>
+
+    <div class="ornament">
+      <span class="ornament-line"></span>
+      <span class="ornament-dot"></span>
+      <span class="ornament-line"></span>
+    </div>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/breadandco.ba/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.google.com/maps/place/Bread%26Co/@43.8381547,18.3168235,17z/data=!3m1!4b1!4m6!3m5!1s0x4758ca3756b1159d:0x39f79a57262a57a8!8m2!3d43.8381547!4d18.3193984!16s%2Fg%2F11fy5h1ctx" target="_blank" rel="noopener" aria-label="Lokacija">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </a>
+    </div>
+
+    <div class="links">
+      <button class="link-btn" onclick="toggleMenu()">Menu</button>
+      <a class="link-btn" href="https://www.google.com/maps/place/Bread%26Co/@43.8381547,18.3168235,17z/data=!3m1!4b1!4m6!3m5!1s0x4758ca3756b1159d:0x39f79a57262a57a8!8m2!3d43.8381547!4d18.3193984!16s%2Fg%2F11fy5h1ctx" target="_blank" rel="noopener">Lokacija</a>
+      <a class="link-btn" href="https://www.instagram.com/breadandco.ba/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+
+    <section class="menu-section" id="menuSection">
+      <div class="menu-nav">
+        <button class="active" onclick="showPage(1, this)">1</button>
+        <button onclick="showPage(2, this)">2</button>
+        <button onclick="showPage(3, this)">3</button>
+        <button onclick="showPage(4, this)">4</button>
+      </div>
+      <img id="menuImg" src="images/page1.png" alt="Meni" onclick="openLightbox(this.src)">
+      <button class="close-menu" onclick="toggleMenu()">Zatvori</button>
+    </section>
+
+  </div>
+
+  <footer class="footer">&copy; 2026 Bread&Co</footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Meni">
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menuSection');
+      menu.classList.toggle('active');
+      if (menu.classList.contains('active')) {
+        menu.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function showPage(num, btn) {
+      document.getElementById('menuImg').src = 'images/page' + num + '.png';
+      document.querySelectorAll('.menu-nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  </script>
+
+</body>
+</html>
