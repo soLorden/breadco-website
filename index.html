@@ -32,7 +32,6 @@
       justify-content: center;
     }
 
-    /* Profile */
     .profile {
       display: flex;
       flex-direction: column;
@@ -57,7 +56,6 @@
       padding: 14px;
     }
 
-    /* Ornament */
     .ornament {
       display: flex;
       align-items: center;
@@ -79,7 +77,6 @@
       background: rgba(184, 149, 106, 0.4);
     }
 
-    /* Social icons */
     .socials {
       display: flex;
       justify-content: center;
@@ -107,7 +104,6 @@
 
     .socials svg { width: 20px; height: 20px; }
 
-    /* Link buttons */
     .links {
       display: flex;
       flex-direction: column;
@@ -126,99 +122,20 @@
       font-weight: 600;
       text-decoration: none;
       cursor: pointer;
-      border: none;
       transition: all 0.2s ease;
       background: #FDFBF8;
       color: #1a1a1a;
       border: 1.5px solid #E5E0DA;
-      box-shadow: none;
     }
 
-    .link-btn:active {
-      transform: scale(0.97);
-    }
+    .link-btn:active { transform: scale(0.97); }
 
-    /* Menu Section */
-    .menu-section {
-      display: none;
-      margin-bottom: 32px;
-    }
-
-    .menu-section.active { display: block; }
-
-    .menu-nav {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .menu-nav button {
-      padding: 8px 18px;
-      border-radius: 10px;
-      border: none;
-      background: #f5f3f0;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: #999;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .menu-nav button.active {
-      background: #B8956A;
-      color: #fff;
-    }
-
-    .menu-section img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-      cursor: zoom-in;
-    }
-
-    .close-menu {
-      display: block;
-      margin: 16px auto 0;
-      padding: 10px 28px;
-      border-radius: 10px;
-      border: none;
-      background: #f5f3f0;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      color: #999;
-      cursor: pointer;
-    }
-
-    /* Footer */
     .footer {
       text-align: center;
       padding: 20px 24px;
       font-size: 11px;
       color: rgba(0,0,0,0.2);
       margin-top: auto;
-    }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
-    }
-
-    .lightbox.active { display: flex; }
-
-    .lightbox img {
-      max-width: 95vw;
-      max-height: 95vh;
-      object-fit: contain;
     }
   </style>
 </head>
@@ -248,56 +165,14 @@
     </div>
 
     <div class="links">
-      <button class="link-btn" onclick="toggleMenu()">Menu</button>
+      <a class="link-btn" href="menu.html" target="_blank">Menu</a>
       <a class="link-btn" href="https://www.google.com/maps/place/Bread%26Co/@43.8381547,18.3168235,17z/data=!3m1!4b1!4m6!3m5!1s0x4758ca3756b1159d:0x39f79a57262a57a8!8m2!3d43.8381547!4d18.3193984!16s%2Fg%2F11fy5h1ctx" target="_blank" rel="noopener">Lokacija</a>
       <a class="link-btn" href="https://www.instagram.com/breadandco.ba/" target="_blank" rel="noopener">Instagram</a>
     </div>
 
-    <section class="menu-section" id="menuSection">
-      <div class="menu-nav">
-        <button class="active" onclick="showPage(1, this)">1</button>
-        <button onclick="showPage(2, this)">2</button>
-        <button onclick="showPage(3, this)">3</button>
-        <button onclick="showPage(4, this)">4</button>
-      </div>
-      <img id="menuImg" src="images/page1.png" alt="Meni" onclick="openLightbox(this.src)">
-      <button class="close-menu" onclick="toggleMenu()">Zatvori</button>
-    </section>
-
   </div>
 
   <footer class="footer">&copy; 2026 Bread&Co</footer>
-
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="Meni">
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menuSection');
-      menu.classList.toggle('active');
-      if (menu.classList.contains('active')) {
-        menu.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-
-    function showPage(num, btn) {
-      document.getElementById('menuImg').src = 'images/page' + num + '.png';
-      document.querySelectorAll('.menu-nav button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    function openLightbox(src) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  </script>
 
 </body>
 </html>
