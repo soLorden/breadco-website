@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bread&Co - Caffe & Pekara</title>
+  <meta name="description" content="Bread&Co - Caffe & Pekara u Sarajevu. Burgeri, wrapovi, deserti i vise.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #B8956A;
+      --accent-hover: #a07d56;
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --text: #1c1917;
+      --text-secondary: #78716c;
+      --text-muted: #a8a29e;
+      --border: #e7e5e4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250, 250, 249, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(231, 229, 228, 0.5);
+    }
+
+    .nav-logo {
+      height: 32px;
+      opacity: 0.9;
+    }
+
+    .nav-btn {
+      padding: 10px 20px;
+      border-radius: 100px;
+      background: var(--accent);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-btn:active { transform: scale(0.96); }
+    .nav-btn:hover { background: var(--accent-hover); }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 80px 48px 48px;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      padding-right: 24px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 420px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      background: var(--text);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary:hover { background: #292524; transform: translateY(-1px); }
+    .btn-primary:active { transform: scale(0.97) translateY(1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); }
+    .btn-secondary:active { transform: scale(0.97) translateY(1px); }
+
+    .btn-icon { width: 18px; height: 18px; }
+
+    /* Hero visual — menu page preview */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-img-wrapper {
+      position: relative;
+      width: 280px;
+      transform: rotate(2deg);
+    }
+
+    .hero-img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow:
+        0 24px 80px -12px rgba(0,0,0,0.12),
+        0 0 0 1px rgba(0,0,0,0.04);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-img-wrapper:hover .hero-img {
+      transform: rotate(-2deg) scale(1.02);
+    }
+
+    .hero-img-bg {
+      position: absolute;
+      top: 20px;
+      left: -16px;
+      width: 100%;
+      border-radius: 20px;
+      opacity: 0.3;
+      filter: blur(1px);
+      z-index: -1;
+      transform: rotate(-4deg);
+    }
+
+    /* ═══ MENU SECTION ═══ */
+    .menu-section {
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.5;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .menu-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px -8px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px -12px rgba(0,0,0,0.15);
+    }
+
+    .menu-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .menu-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 14px;
+      background: var(--accent);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .menu-cta:active { transform: scale(0.97) translateY(1px); }
+
+    /* ═══ LOCATION SECTION ═══ */
+    .location-section {
+      padding: 0 24px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .location-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+    }
+
+    .location-map {
+      min-height: 300px;
+      background: #e7e5e4;
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .location-info {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .location-info h3 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .location-info p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .location-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      background: var(--text);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      align-self: flex-start;
+    }
+
+    .location-btn:hover { background: #292524; }
+    .location-btn:active { transform: scale(0.97); }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .footer-social:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .footer-social svg { width: 18px; height: 18px; }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ═══ ANIMATIONS ═══ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+    .hero-visual { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-logo { height: 26px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 100px 24px 48px;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero-content { padding-right: 0; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+
+      .hero-img-wrapper { width: 220px; }
+
+      .menu-grid { grid-template-columns: 1fr; max-width: 360px; }
+
+      .location-card { grid-template-columns: 1fr; }
+      .location-map { min-height: 220px; }
+      .location-info { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <img src="images/logo.png" alt="Bread&Co" class="nav-logo">
+    <a class="nav-btn" href="menu.html">Menu</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Sarajevo
+      </div>
+      <h1 class="hero-title">Ukus koji<br>se <span>pamti.</span></h1>
+      <p class="hero-desc">Svjezi burgeri, hrskavi wrapovi i domaci deserti. Sve od najboljih sastojaka, svaki dan.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="menu.html">
+          Pogledaj Menu
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn-secondary" href="https://www.google.com/maps/place/Bread%26Co/@43.8381547,18.3168235,17z/data=!3m1!4b1!4m6!3m5!1s0x4758ca3756b1159d:0x39f79a57262a57a8!8m2!3d43.8381547!4d18.3193984!16s%2Fg%2F11fy5h1ctx" target="_blank" rel="noopener">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lokacija
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <img class="hero-img-bg" src="images/page1_edit.jpeg" alt="">
+        <img class="hero-img" src="images/page1_edit.jpeg" alt="Bread&Co Menu">
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Preview -->
+  <section class="menu-section">
+    <p class="section-label">Nas Menu</p>
+    <h2 class="section-title">Napravljeno sa strasti</h2>
+    <p class="section-desc">Od klasicnog cheeseburgera do premium Bread&Co burgera. Pogledaj kompletnu ponudu.</p>
+    <div class="menu-grid">
+      <div class="menu-card"><img src="images/page1_edit.jpeg" alt="Burgeri"></div>
+      <div class="menu-card"><img src="images/page2_edit.jpeg" alt="Wrapovi i Hot Dog"></div>
+      <div class="menu-card"><img src="images/page3.png" alt="Combo"></div>
+      <div class="menu-card"><img src="images/page4.png" alt="Deserti i Prilozi"></div>
+    </div>
+    <a class="menu-cta" href="menu.html">
+      Otvori kompletan menu
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <!-- Location -->
+  <section class="location-section">
+    <div class="location-card">
+      <div class="location-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.5!2d18.3168235!3d43.8381547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4758ca3756b1159d%3A0x39f79a57262a57a8!2sBread%26Co!5e0!3m2!1sen!2sba!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="location-info">
+        <h3>Posjeti nas</h3>
+        <p>Bread&Co<br>Caffe & Pekara<br>Sarajevo, Bosna i Hercegovina</p>
+        <a class="location-btn" href="https://www.google.com/maps/place/Bread%26Co/@43.8381547,18.3168235,17z/data=!3m1!4b1!4m6!3m5!1s0x4758ca3756b1159d:0x39f79a57262a57a8!8m2!3d43.8381547!4d18.3193984!16s%2Fg%2F11fy5h1ctx" target="_blank" rel="noopener">
+          Otvori u Maps
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-socials">
+      <a class="footer-social" href="https://www.instagram.com/breadandco.ba/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a class="footer-social" href="https://www.google.com/maps/place/Bread%26Co/@43.8381547,18.3168235,17z/data=!3m1!4b1!4m6!3m5!1s0x4758ca3756b1159d:0x39f79a57262a57a8!8m2!3d43.8381547!4d18.3193984!16s%2Fg%2F11fy5h1ctx" target="_blank" rel="noopener" aria-label="Lokacija">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </a>
+    </div>
+    <p class="footer-text">Bread&Co 2026. Sva prava zadrzana.</p>
+  </footer>
+
+</body>
+</html>
